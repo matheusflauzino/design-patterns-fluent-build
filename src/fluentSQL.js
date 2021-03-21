@@ -33,6 +33,7 @@ export default class FluentSQLBuilder {
 
     orderBy(field) {
         this.#orderBy = field
+        return this
     }
 
     #performLimit(results) {
@@ -58,6 +59,15 @@ export default class FluentSQLBuilder {
         return currentItem
     }
 
+    #performOrderBy(results) {
+        if(!this.#orderBy) return results
+
+        return results.sort((prev,next) => {
+            return prev[this.#orderBy].localeCompare(next[this.#orderBy])
+        })
+    }
+
+
     build() {
         const results = []
         for(const item of this.#database) {
@@ -69,6 +79,7 @@ export default class FluentSQLBuilder {
         }
 
 
-        return results
+        const finalResult = this.#performOrderBy(results)
+        return finalResult
     }
 }
