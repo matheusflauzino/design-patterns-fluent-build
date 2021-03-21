@@ -52,7 +52,12 @@ describe('Test Suit for FluentSQL Builder', () => {
 
     })
 
-    test.todo('#select given a collection it should return only specifc fields')
+    test('#select given a collection it should return only specifc fields', () => {
+        const result = FluentSQLBuilder.for(data).select(['name','category']).build()
+        const expected = data.map(({name,category }) => ({name,category}))
+
+        expect(result).toStrictEqual(expected)
+    })
 
     test.todo('#orderBy given a colletion it should order results by field')
 
