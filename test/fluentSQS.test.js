@@ -59,7 +59,31 @@ describe('Test Suit for FluentSQL Builder', () => {
         expect(result).toStrictEqual(expected)
     })
 
-    test.todo('#orderBy given a colletion it should order results by field')
+    test('#orderBy given a colletion it should order results by field', () => {
+        const result = FluentSQLBuilder.for(data).orderBy('name').build()
+
+        const expected = [
+            
+            {
+                id: 2,
+                name: 'joao',
+                category: 'manager'
+        
+            },
+            {
+                id: 1,
+                name: 'mariazinha',
+                category: 'developer'
+        
+            },
+            {
+                id: 0,
+                name: 'matheusflauzino',
+                category: 'developer'
+            }           
+        ]
+        expect(result).toStrictEqual(expected)
+    })
 
     test.todo('pipeline')
 })
