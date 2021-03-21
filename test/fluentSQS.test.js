@@ -85,5 +85,20 @@ describe('Test Suit for FluentSQL Builder', () => {
         expect(result).toStrictEqual(expected)
     })
 
-    test.todo('pipeline')
+    test('pipeline', () => {
+        const result = FluentSQLBuilder.for(data)
+            .where({category: 'developer' })
+            .where({name: /m/})
+            .orderBy('name')
+            .select(['category','name'])
+            .orderBy('name')
+            .build()
+
+        const expected = data.filter(({category }) => category === 'developer').map(({name,category}) => ({name,category})).sort((a,b) => {
+            return a['name'].localeCompare(b['name'])
+        })
+        expect(result).toStrictEqual(expected)
+        
+        
+    })
 })
