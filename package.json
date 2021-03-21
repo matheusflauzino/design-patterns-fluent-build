@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node --experimental-json-modules src/",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --config jest.config.mjs --passWithNoTests --silent --noStackTrace --runInBand",
     "test:cov": "npm run test -- --coverage",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --config jest.config.mjs --watchAll"
